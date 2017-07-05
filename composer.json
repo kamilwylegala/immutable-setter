@@ -3,6 +3,7 @@
     "description": "Utility class for PHP that helps making your classes immutable.",
     "type": "library",
     "license": "MIT",
+    "keywords": ["immutable", "setter", "wither"],
     "authors": [
         {
             "name": "Kamil Wylegala",
