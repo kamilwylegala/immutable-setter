@@ -1,6 +1,8 @@
 # Immutable Setter
 
-Tiny utillity class that helps you making your classes immutable by adding *wither* methods. Inspired by Lombok's @Wither annotations.
+Tiny utillity class that helps you making your classes immutable by adding *wither* methods. 
+
+*Inspired by Lombok's @Wither annotations.*
 
 It lets you easily add `witherX` methods to clone object with modified one property.
 
