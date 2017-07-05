@@ -1,4 +1,4 @@
-# ImmutableSetter
+# Immutable Setter
 
 Tiny utillity class that helps you making your classes immutable by adding *wither* methods. Inspired by Lombok's @Wither annotations.
 
@@ -21,6 +21,7 @@ return $this->wither->getInstance("arg1", $newArg1)
 ### Example 
 
 ```php
+use KamilWylegala\ImmutableSetter\Wither;
 
 class Person
 {
