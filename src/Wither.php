@@ -28,7 +28,7 @@ class Wither
         if ($currentValue === $newValue) {
             return $this->baseObject;
         }
-        
+
         return $this->constructNewInstance($targetProperty, $newValue);
     }
 
@@ -36,8 +36,8 @@ class Wither
     {
         $supportedGetters = ["get", "is"];
 
-        foreach($supportedGetters as $getterType) {
-            $propertyGetterName = $getterType.ucfirst($targetProperty);
+        foreach ($supportedGetters as $getterType) {
+            $propertyGetterName = $getterType . ucfirst($targetProperty);
             if (method_exists($this->baseObject, $propertyGetterName)) {
                 return $propertyGetterName;
             }
@@ -49,7 +49,7 @@ class Wither
     {
         $reflectionClass = new ReflectionClass($this->baseObject);
 
-        $mapper = function($property) use ($targetProperty, $newValue) {
+        $mapper = function ($property) use ($targetProperty, $newValue) {
             if ($property === $targetProperty) {
                 return $newValue;
             }
@@ -60,13 +60,4 @@ class Wither
 
         return $reflectionClass->newInstanceArgs($constructorArguments);
     }
-
-    /**
-     * ModelMapper maps properties by reflection of private fields.
-     * This should not be needed when ModelMapper will be switched to public getters only.
-     */
-   public function __toString()
-   {
-       return "";
-   }
 }
