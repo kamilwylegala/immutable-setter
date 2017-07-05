@@ -8,7 +8,10 @@ It lets you easily add `witherX` methods to clone object with modified one prope
 
 ## Installation
 
-TODO: Add package to packagist.
+Use composer to get library from packagist:
+```
+$ php composer.phar require kamilwylegala/immutable-setter
+```
 
 ## Usage
 
