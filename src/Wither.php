@@ -6,20 +6,18 @@ use ReflectionClass;
 
 class Wither
 {
-    const SUPPORTED_GETTERS = ["get", "is"];
-
     private $baseObject;
 
     /** @var array */
     private $constructorSchema;
 
-    public function __construct($baseObject, array $constuctorSchema)
+    public function __construct($baseObject, array $constructorSchema)
     {
         if (!is_object($baseObject)) {
             throw new Exception("Given Wither base object is not an object.");
         }
         $this->baseObject = $baseObject;
-        $this->constructorSchema = $constuctorSchema;
+        $this->constructorSchema = $constructorSchema;
     }
 
     public function getInstance($targetProperty, $newValue)
@@ -36,7 +34,9 @@ class Wither
 
     private function getAvailableGetterOf($targetProperty)
     {
-        foreach(self::SUPPORTED_GETTERS as $getterType) {
+        $supportedGetters = ["get", "is"];
+
+        foreach($supportedGetters as $getterType) {
             $propertyGetterName = $getterType.ucfirst($targetProperty);
             if (method_exists($this->baseObject, $propertyGetterName)) {
                 return $propertyGetterName;

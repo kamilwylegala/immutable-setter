@@ -1,6 +1,6 @@
 {
     "name": "kamilwylegala/immutable-setter",
-    "description": "Utility class that helps making your classes immutable",
+    "description": "Utility class for PHP that helps making your classes immutable.",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -14,7 +14,9 @@
             "KamilWylegala\\ImmutableSetter\\": "src"
         }
     },
-    "require": {},
+    "require": {
+      "php": ">=5.4.0"
+    },
     "require-dev": {
         "phpunit/phpunit": "5.4.*"
     }
