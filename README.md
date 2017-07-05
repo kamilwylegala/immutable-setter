@@ -2,7 +2,7 @@
 
 Tiny utillity class that helps you making your classes immutable by adding *wither* methods. 
 
-*Inspired by Lombok's @Wither annotations.*
+*Inspired by Lombok's @Wither annotation.*
 
 It lets you easily add `witherX` methods to clone object with modified one property.
 
