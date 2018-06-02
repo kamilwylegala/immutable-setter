@@ -1,8 +1,8 @@
 <?php
 namespace KamilWylegala\ImmutableSetter;
 
-use PHPUnit_Framework_TestCase;
 use Exception;
+use PHPUnit_Framework_TestCase;
 
 class WitherTest extends PHPUnit_Framework_TestCase
 {
@@ -14,8 +14,10 @@ class WitherTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->testObject = new TestSubject("John", 28, false);
-        $this->wither = new Wither($this->testObject,
-            ["name", "age", "verified"]);
+        $this->wither = new Wither(
+            $this->testObject,
+            ["name", "age", "verified"]
+        );
     }
 
     /** @test */
@@ -56,6 +58,16 @@ class WitherTest extends PHPUnit_Framework_TestCase
     {
         $this->setExpectedException(Exception::class);
         new Wither([], ["property1", "property2"]);
+    }
+
+    /** @test */
+    public function should_automatically_discover_constructor()
+    {
+        $wither = new Wither(
+            new TestSubject("John", 30, true)
+        );
+
+        self::assertThat($wither->getInstance("age", 25), self::equalTo(new TestSubject("John", 25, true)));
     }
 
 }

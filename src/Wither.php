@@ -11,13 +11,18 @@ class Wither
     /** @var array */
     private $constructorSchema;
 
-    public function __construct($baseObject, array $constructorSchema)
+    public function __construct($baseObject, array $constructorSchema = [])
     {
         if (!is_object($baseObject)) {
             throw new Exception("Given Wither base object is not an object.");
         }
+
         $this->baseObject = $baseObject;
-        $this->constructorSchema = $constructorSchema;
+
+        $this->constructorSchema = empty($constructorSchema)
+            ? $this->discoverConstructorSchema($baseObject)
+            : $constructorSchema;
+
     }
 
     public function getInstance($targetProperty, $newValue)
@@ -60,4 +65,15 @@ class Wither
 
         return $reflectionClass->newInstanceArgs($constructorArguments);
     }
+
+    private function discoverConstructorSchema($baseObject)
+    {
+        $reflection = new \ReflectionObject($baseObject);
+        $constructorParameters = $reflection->getConstructor()->getParameters();
+
+        return array_map(function (\ReflectionParameter $parameter) {
+            return $parameter->getName();
+        }, $constructorParameters);
+    }
+
 }
