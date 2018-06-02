@@ -16,7 +16,7 @@ $ php composer.phar require kamilwylegala/immutable-setter
 ## Usage
 
 1. Add `wither` field to your class.
-2. Assign `new Wither($this, ["arg1", "arg2"])` to this field and provide constructor schema with proper order of arguments.
+2. Assign `new Wither($this, ["arg1", "arg2"])` to this field and provide constructor schema with proper order of arguments. You can also skip second argument and let `Wither` resolve constructor arguments automatically.
 3. Add public `withArg1` method to your class and put:
 ```
 return $this->wither->getInstance("arg1", $newArg1)
@@ -41,7 +41,7 @@ class Person
         $this->name = $name;
         $this->age = $age;
 
-        $this->wither = new Wither($this, ["name", "age"]);
+        $this->wither = new Wither($this, ["name", "age"]); //Second param is optional.
     }
 
     public function withName($newName)
